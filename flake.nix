@@ -6,7 +6,15 @@
         pkgs = import nixpkgs { inherit system; };
     in {
         devShells.${system}.default = pkgs.mkShell {
-            packages = with pkgs; [ libgcc valgrind ];
+            packages = with pkgs; [
+                libgcc
+                valgrind
+                cmake
+                gnumake
+                glfw
+                glm
+                lua
+            ];
             shellHook = ''export PS1="\w $ "'';
         };
     };
