@@ -5,9 +5,11 @@ find_package(OpenGL REQUIRED)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-# Including GLFW (comment out if using nix flake)
-add_subdirectory(glfw)
-include_directories(glfw/include)
+# Including GLFW
+if(EXISTS glfw)
+    add_subdirectory(glfw)
+    include_directories(glfw/include)
+endif()
 
 # Including GLAD
 include_directories(glad/include)
