@@ -29,11 +29,11 @@ int main() {
     int success;
     char infoLog[512];
     
-    // Create three vertices, forming a triangle
+    // Create three vertices (followed by their color) forming a triangle
     constexpr float vertices[] = {
-        -0.5f, -0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f,
-         0.0f,  0.5f, 0.0f
+        -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+         0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+         0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
     };
 
     // Create vertex array object to save all the upcoming state
@@ -55,9 +55,11 @@ int main() {
     // 1. starts at location 0
     // 2. number of values in each vertex attribute is 3 (vec3)
     // 3. each value of a vertex attribute is a float
-    // 5. space between vertex attributes is 3 floats
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    // 5. space between vertex attributes is 6 floats
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(0);  // enable location 0 of vertex attributes
+    glEnableVertexAttribArray(1);
     
     // Enter render loop
     while ( !glfwWindowShouldClose(window) ) {
